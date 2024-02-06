@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SizedBox.expand(
         child: CustomPaint(
-          painter: MyCustomPainter(),
+          painter: MyCustomPainter(pointsList: List.empty()),
         ),
       ),
       floatingActionButton: const FloatingActionButton(
