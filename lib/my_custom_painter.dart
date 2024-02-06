@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moving_points/point.dart';
+import 'package:moving_points/data_point.dart';
 
 class MyCustomPainter extends CustomPainter {
   MyCustomPainter({required this.pointsList});
