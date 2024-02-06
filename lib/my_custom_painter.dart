@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moving_points/data_point.dart';
+import 'dart:ui' as ui;
 
 class MyCustomPainter extends CustomPainter {
   MyCustomPainter({required this.pointsList}) {
@@ -10,17 +11,23 @@ class MyCustomPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paintLine = Paint()
-      ..color = Colors.green
-      ..strokeWidth = 4
-      ..style = PaintingStyle.fill;
-
     for (DataPoint data in pointsList) {
       if (data != pointsList.last) {
         int next = pointsList.indexOf(data) + 1;
+        DataPoint data2 = pointsList[next];
+
+        Offset Offset1 = Offset(data.x, data.y);
+        Offset Offset2 = Offset(data2.x, data2.y);
+
+        final paintLine = Paint()
+          ..shader =
+              ui.Gradient.linear(Offset1, Offset2, [data.color, data2.color])
+          ..strokeWidth = 4
+          ..style = PaintingStyle.fill;
+
         canvas.drawLine(
-          Offset(data.x, data.y),
-          Offset(pointsList[next].x, pointsList[next].y),
+          Offset1,
+          Offset2,
           paintLine,
         );
       }
