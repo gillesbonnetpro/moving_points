@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     list.add(
       CustomPaint(
-        painter: MyCustomPainter(pointsList: List.empty()),
+        painter: MyCustomPainter(pointsList: dataPointList),
       ),
     );
 

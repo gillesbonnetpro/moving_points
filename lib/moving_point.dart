@@ -11,16 +11,22 @@ class MovingPoint extends StatefulWidget {
 }
 
 class _MovingPointState extends State<MovingPoint> {
+  late double pointSize;
+
+  @override
+  void initState() {
+    pointSize = 30;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    print('size du moving point : ${MediaQuery.of(context).size.shortestSide}');
-
     return Positioned(
-      left: widget.data.x,
-      top: widget.data.y,
+      left: widget.data.x - (pointSize / 2),
+      top: widget.data.y - (pointSize / 2),
       child: SizedBox(
-        height: MediaQuery.of(context).size.shortestSide / 50,
-        width: MediaQuery.of(context).size.shortestSide / 50,
+        height: pointSize,
+        width: pointSize,
         child: Container(
           decoration: BoxDecoration(
             color: widget.data.color,
