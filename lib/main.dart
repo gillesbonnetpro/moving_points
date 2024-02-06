@@ -48,9 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
     final Color newColor =
         Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
     final double newX =
-        math.Random().nextDouble() * (MediaQuery.of(context).size.width * 0.8);
-    final double newY =
-        math.Random().nextDouble() * (MediaQuery.of(context).size.height * 0.8);
+        math.Random().nextDouble() * (MediaQuery.of(context).size.width * 0.8) +
+            15;
+    final double newY = math.Random().nextDouble() *
+            (MediaQuery.of(context).size.height * 0.8) +
+        15;
     print('nouveau point : $newX, $newY, $newColor');
 
     setState(() {
@@ -65,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     list.add(
       CustomPaint(
-        painter: MyCustomPainter(pointsList: List.empty()),
+        painter: MyCustomPainter(pointsList: dataPointList),
       ),
     );
 
