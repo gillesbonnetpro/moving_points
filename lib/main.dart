@@ -72,8 +72,21 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     for (var dataPoint in dataPointList) {
+      MovingPoint mp;
+
+      if (dataPointList.indexOf(dataPoint) > 0) {
+        mp = MovingPoint(
+          data: dataPoint,
+          previousData: dataPointList[dataPointList.indexOf(dataPoint) - 1],
+        );
+      } else {
+        mp = MovingPoint(
+          data: dataPoint,
+        );
+      }
+
       list.add(
-        MovingPoint(data: dataPoint),
+        mp,
       );
     }
 
@@ -97,6 +110,22 @@ class _MyHomePageState extends State<MyHomePage> {
             children: getWidgetList(),
           ),
         ),
+      ),
+      bottomNavigationBar: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            onPressed: () => addDataPoint(),
+            icon: Icon(Icons.add),
+          ),
+          IconButton(
+            onPressed: () => setState(() {
+              dataPointList.clear();
+            }),
+            icon: Icon(Icons.close),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => addDataPoint(),
