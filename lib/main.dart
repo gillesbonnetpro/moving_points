@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moving_points/my_custom_painter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +39,11 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const SizedBox.expand(),
+      body: SizedBox.expand(
+        child: CustomPaint(
+          painter: MyCustomPainter(),
+        ),
+      ),
       floatingActionButton: const FloatingActionButton(
         onPressed: null,
         tooltip: 'add point',
