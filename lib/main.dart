@@ -73,21 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     for (var dataPoint in dataPointList) {
       MovingPoint mp;
-
-      if (dataPointList.indexOf(dataPoint) > 0) {
-        mp = MovingPoint(
-          data: dataPoint,
-          previousData: dataPointList[dataPointList.indexOf(dataPoint) - 1],
-        );
-      } else {
-        mp = MovingPoint(
-          data: dataPoint,
-        );
-      }
-
-      list.add(
-        mp,
-      );
+      mp = MovingPoint(data: dataPoint);
+      list.add(mp);
     }
 
     print('la liste contient ${list.length} widgets');
