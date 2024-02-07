@@ -72,9 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     for (var dataPoint in dataPointList) {
-      MovingPoint mp;
-      mp = MovingPoint(data: dataPoint);
-      list.add(mp);
+      list.add(
+        MovingPoint(
+            data: dataPoint,
+            onMove: (x, y) {
+              print('$x, $y');
+              setState(() {
+                dataPoint.x = x;
+                dataPoint.y = y;
+              });
+            }),
+      );
     }
 
     print('la liste contient ${list.length} widgets');
