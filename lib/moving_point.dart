@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import 'data_point.dart';
 
 class MovingPoint extends StatefulWidget {
-  MovingPoint({super.key, required this.data, required this.onMove});
+  MovingPoint(
+      {super.key,
+      required this.data,
+      required this.onMove,
+      required this.onRelease});
 
   DataPoint data;
   Function(double, double) onMove;
+  Function() onRelease;
 
   @override
   State<MovingPoint> createState() => _MovingPointState();
@@ -25,33 +30,29 @@ class _MovingPointState extends State<MovingPoint> {
         width: pointSize,
         child: GestureDetector(
           onPanUpdate: (details) {
-            double newX = widget.data.x;
-            double newY = widget.data.y;
-            // Swiping in right direction.
-            if (details.delta.dx > 0) {
-              newX = widget.data.x + details.delta.dx;
-              print('vers la droite $newX');
+            double newX = widget.data.x + details.delta.dx;
+            double newY = widget.data.y + details.delta.dy;
+
+            if (newX < pointSize) {
+              newX = pointSize;
             }
 
-            // Swiping in left direction.
-            if (details.delta.dx < 0) {
-              newX = widget.data.x + details.delta.dx;
-              print('vers la gauche $newX');
+            if (newX > (MediaQuery.of(context).size.width - pointSize)) {
+              newX = MediaQuery.of(context).size.width - pointSize;
             }
 
-            // Swiping in bottom direction.
-            if (details.delta.dy > 0) {
-              newY = widget.data.y + details.delta.dy;
-              print('vers le bas $newY');
+            if (newY < pointSize) {
+              newY = pointSize;
             }
 
-            // Swiping in up direction.
-            if (details.delta.dy < 0) {
-              newY = widget.data.y + details.delta.dy;
-              print('vers le haut $newY');
+            if (newY > (MediaQuery.of(context).size.height - 2 * pointSize)) {
+              newY = (MediaQuery.of(context).size.height - 2 * pointSize);
             }
 
             widget.onMove(newX, newY);
+          },
+          onPanEnd: (details) {
+            widget.onRelease();
           },
           child: Container(
             decoration: BoxDecoration(
