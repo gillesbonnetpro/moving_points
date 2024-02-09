@@ -44,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+// ajoute un jeu de données aux points
   void addDataPoint() {
     final Color newColor =
         Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
@@ -62,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // retourne la liste de points à afficher
   List<Widget> getWidgetList() {
     List<Widget> list = [];
 

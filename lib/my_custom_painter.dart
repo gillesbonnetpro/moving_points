@@ -16,18 +16,18 @@ class MyCustomPainter extends CustomPainter {
         int next = pointsList.indexOf(data) + 1;
         DataPoint data2 = pointsList[next];
 
-        Offset Offset1 = Offset(data.x, data.y);
-        Offset Offset2 = Offset(data2.x, data2.y);
+        Offset offset1 = Offset(data.x, data.y);
+        Offset offset2 = Offset(data2.x, data2.y);
 
         final paintLine = Paint()
           ..shader =
-              ui.Gradient.linear(Offset1, Offset2, [data.color, data2.color])
+              ui.Gradient.linear(offset1, offset2, [data.color, data2.color])
           ..strokeWidth = 4
           ..style = PaintingStyle.fill;
 
         canvas.drawLine(
-          Offset1,
-          Offset2,
+          offset1,
+          offset2,
           paintLine,
         );
       }
